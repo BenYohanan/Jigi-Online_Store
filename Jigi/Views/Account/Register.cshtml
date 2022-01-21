@@ -1,0 +1,85 @@
+﻿@model Jigi.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid bg-dark">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mb-5 mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Account</h3></div>
+                    <div class="card-body">
+                        <form asp-action="Register" asp-controller="Account" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input asp-for="FullName" class="form-control" type="text" placeholder="Enter Full Name -  Surname First" required />
+                                        <label asp-for="FullName" class="form-label"><i class='fas fa-user' style='font-size:18px; color:#161515;'></i><b> Full Name</b></label>
+                                        <span asp-validation-for="FullName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input asp-for="PhoneNumber" class="form-control" type="tel" placeholder="Enter Phone Number" required />
+                                        <label asp-for="PhoneNumber" class="form-label"><i class='fas fa-phone-alt' style='font-size:18px; color:#161515;'></i><b> Phone Number </b></label>
+                                        <span asp-validation-for="PhoneNumber"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-9">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input asp-for="Email" class="form-control" type="email" placeholder="name@example.com" required />
+                                        <label asp-for="Email" class="form-label"><i class='fas fa-envelope-open' style='font-size:18px; color:#161515;'></i><b> Email</b> </label>
+                                        <span asp-validation-for="Email"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="form-floating  mb-3 mb-md-0">
+                                        <select asp-for="Gender" class="form-control" asp-items="@(new SelectList(@ViewBag.GenderList,  "Id" ,"Name"))" required></select>
+                                        <span asp-validation-for="Gender" class="text-danger"></span>
+                                        <label class="control-label"><i class='fas fa-venus-mars' style='font-size:18px; color: #161515;'></i><b> Gender </b></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input asp-for="Password" class="form-control" type="password" placeholder="Create a password" required/>
+                                        <label asp-for="Password" class="form-label"><i class='fas fa-lock' style='font-size:18px; color: #161515;'></i><b> Password </b></label>
+                                        <span asp-validation-for="Password"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input asp-for="ConfirmPassword" class="form-control" type="password" placeholder="Password and confirm Password must match" required/>
+                                        <label asp-for="ConfirmPassword" class="form-label"><i class='fas fa-lock' style='font-size:18px; color:#161515;'></i><b> ConfirmPassword </b></label>
+                                        <span asp-validation-for="ConfirmPassword"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0">
+                                <div class="small"><button asp-action="Register" type="submit" class="btn btn-sm  btn-outline-dark ">Create Account</button></div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-footer text-center py-3">
+                        <div class="small"><a asp-action="Login" style="text-decoration:none">Have an account? Go to login</a></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>

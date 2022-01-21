@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> signInManager;
+@inject UserManager<ApplicationUser> userManager;
+
+@{
+    ViewData["Title"] = "UserDashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model !=null && Model.Count() > 0)
+{
+    <table class="table-bordered table-striped table-responsive-sm">
+        <thead style="background-color:darkgray">
+            <tr>
+                Name
+            </tr>
+            <tr>
+                Phone Number
+            </tr>
+            <tr>
+                Gender
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var user in Model)
+            {
+                <tr>@user.FullName</tr>
+                <tr>@user.PhoneNumber</tr>
+                <tr>@user.Gender</tr>
+            }
+        </tbody>
+    </table> 
+}

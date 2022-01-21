@@ -1,0 +1,53 @@
+﻿@model Jigi.Models.SlideImage
+
+@{
+    ViewData["Title"] = "SlideImage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mb-5 mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Slide Image</h3></div>
+                <div class="card-body">
+
+                    <form asp-controller="Admin" method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+
+                        <div class="form-control">
+                            <label asp-for="SlideTitle" class="form-label">Add Slide</label>
+                            <input asp-for="SlideTitle" type="text" class="form-control" placeholder="Slide Name" required />
+                            <span asp-validation-for="SlideTitle"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <label asp-for="Photos" class="custom-file-label">Choose File</label>
+                                <input asp-for="Photos" type="file" class="form-control custom-file-input" />
+                                <span asp-validation-for="Photos" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 pt-2">
+                            <button asp-action="SlideImage" class="btn btn-dark btn-sm" type="submit">Add</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small"><p> PERFECTION OVER MONEY</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var filename = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(filename);
+        })
+    })
+</script>

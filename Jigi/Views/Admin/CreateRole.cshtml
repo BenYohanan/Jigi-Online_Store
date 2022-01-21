@@ -1,0 +1,42 @@
+﻿@model Jigi.Models.Role
+
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card shadow-lg border-0 rounded-lg mb-5 mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Role</h3></div>
+                <div class="card-body">
+
+                    <form asp-controller="Admin" method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+
+                        <div class="form-control">
+                            <label asp-for="Name" class="form-label">Create Role</label>
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Role Name" required/>
+                            <span asp-validation-for="Name"></span>
+                        </div>
+
+                        <div class="col-md-4 pt-2">
+                            <button asp-action="CreateRole" class="btn btn-dark btn-sm" type="submit">Create Role</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3">
+                    <div class="small"><a asp-controller="Account" asp-action="Register">Need an account? Sign up!</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   
+

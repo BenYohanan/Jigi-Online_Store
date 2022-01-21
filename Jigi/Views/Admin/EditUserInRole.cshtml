@@ -1,0 +1,40 @@
+﻿@model List<Jigi.ViewModel.UserRoleViewModel>
+@{
+    ViewData["Title"] = "EditUserInRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var roleId = ViewBag.roleId;
+}
+
+<div class="container">
+    <form method="post">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mb-5 mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Or remove user from this role</h3></div>
+                    <div class="card-body">
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div class="form-check m-1">
+                                <input type="hidden" asp-for="@Model[i].UserId" />
+                                <input type="hidden" asp-for="@Model[i].UserName" />
+                                <input asp-for="@Model[i].IsSelected" class="form-check-input" />
+                                <label asp-for="@Model[i].IsSelected" class="form-check-label">
+                                    @Model[i].UserName
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer text-center py-3">
+                        <div class="small">
+                            <input type="submit" value="Update" class="btn btn-primary" style="width:auto"/>
+                            <a asp-action="EditRole" asp-route-id="@roleId" class="btn btn-primary" style="width:auto">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    
+

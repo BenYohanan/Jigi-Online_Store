@@ -1,0 +1,29 @@
+PROJECT NAME: JIGI - ONLINE STORE
+
+	THINGS TO IMPLEMENT IN THE PROJECT
+
+DONE:
+1. Design Of Admin Panel
+2. ADMIN PANEL
+i. Add, Edit, Delete from Product 
+ii. Add, Edit, Delete from Category
+*Populating the home page with product pictures from admin panel
+*Design of Home Page
+2. Account Dropdown [Home Page]
+i. Register
+* Admin and User
+ii. Login
+*Admin and Register
+*Search button working
+3. Add to cart
+
+
+IN PROGRESS:
+*Success Message
+iii. View all users Order
+4. Image responsiveness - click on image it will take you to the product details
+i. Check Out Cart [Uniquely(A page for a user)]
+4. Shipping Order
+5. Payment Method
+6.Chat with admin
+7. Add slide from admin pannel

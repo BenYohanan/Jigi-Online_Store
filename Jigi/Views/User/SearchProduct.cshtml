@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Jigi.Models.Product>
+@{
+    ViewData["Title"] = "SearchProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SearchProduct</h1>
+
+<div class="container-fluid row product-container">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:8px">
+            <div class="img-thumbnail product-item" style="height:500px">
+                <img class="img-responsive" title="Click to view product detail" style="cursor:pointer; display:block; height:340px; max-width:100%" src="@product.Image" />
+                <div class="caption">
+                    <h5>@product.ProductName</h5>
+                    <div class="container-fluid">
+                        <p>&#8358; @product.Price</p>
+                        <button type="submit" onclick="AddTOCartAndCount('@product.ProductName (@product.Quantity)')" class="fa-pull-right"><i class="fa fa-shopping-cart"></i></button>
+                        <span id="result" class="counter counter-lg vis"></span>
+                    </div>
+                    <p style="font-size:15px">@product.Description</p>
+                    <p>
+
+                    </p>
+                    <div class="product-item-badge">
+                        @if (product.IsFeatured == true)
+                        {
+                            <p>New</p>
+                        }
+                        else
+                        {
+                            <p>Old</p>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

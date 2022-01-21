@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Jigi.Models.Role>
+
+@{
+    ViewData["Title"] = "ListRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Roles
+        <a asp-controller="Admin" asp-action="CreateRole" class="btn btn-info fa-pull-right">Create Role</a>
+    </div>
+
+    <div class="card-body">
+        <div class="table-responsive">
+
+            @if (Model.Any())
+
+            {
+                <table class="table table-bordered table-striped" id="datatablesSimple" width="100%" cellspacing="0">
+
+                    <thead>
+                        <tr>
+                            <th>Role Id</th>
+                            <th>Role Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var role in Model)
+                        {
+
+                            <tr>
+                                <td>@role.Name</td>
+                                <td>@role.Id</td>
+
+                                <td>
+                                    <div class="w-75 btn-group">
+                                        <a asp-controller="Admin" asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-sm btn-info mx-1">Edit</a>
+                                        <a asp-controller="Admin" asp-action="#" asp-route-id="@role.Id" class="btn btn-sm btn-danger mx-1">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="card">
+                    <div class="card-header">
+                        No Roles Created
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            Create Role with the button below
+                        </h4>
+                        <a asp-controller="Admin" asp-action="CreateRole" class="btn btn-primary">Create Role</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,228 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]-Jigi Online Electronics Store</title>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/dataTables.buttons.min.js"></script>
+    <script src="~/js/buttons.flash.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jszip.min.js"></script>
+    <script src="~/js/pdfmake.min.js"></script>
+    <script src="~/js/vfs_fonts.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/buttons.html5.min.js"></script>
+    <script src="~/js/buttons.print.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/clipboard.min.js"></script>
+    <script src="~/js/sweetalert2.all.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/all.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/font awesome/js/fontawesome.js"></script>
+    <script src="~/bootstrap/js/bootstrap.js"></script>
+
+
+
+
+    <link href="~/font awesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="~/font awesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-grid.css" />
+    <link rel="stylesheet" href="~/css/bootstrap-reboot.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/MainLayout.css" />
+
+    @*
+        <link href="~/font awesome/css/svg-with-js.css" rel="stylesheet" />
+    *@
+
+
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6 col-xs-6 col-sm-6 col-xl-6">
+                <div class="logo">
+                    <h1 class="pt-4"><a href="#"> Jigi <span>Shopping Store</span></a></h1>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-6 col-sm-6 col-xl-6">
+                <div class="account">
+                    <ul>
+                        <li>
+                            <div class="d-none">
+                                <h4><a><i class="fa fa-blender-phone" style="font-size:30px"></i></a></h4>
+                                <p class="font-weight-bold" style="font-size:20px">+2348162296747</p>
+                            </div>
+
+                            <div class="visible-xs">
+                                <h4><a><i class="fa fa-phone" style="font-size:30px"></i></a></h4>
+                                <p class="font-weight-bold" style="font-size:20px">+2348162296747</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed navbar-dark border-bottom box-shadow mb-3 sticky-top" style="background-color:#0b0d10;">
+                <div class="container-fluid">
+
+                    <a class="navigation-brand navbar-brand" style="letter-spacing:10px; font-weight:bolder; color:white;">JIGI</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    
+
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1 text-light" style="font-size:20px; font-weight:bold;">
+                            <li class=" nav-item">
+                                <a class=" nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Location</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">About</a>
+                            </li>
+
+                            @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Admin" asp-action="Dashboard">Admin</a>
+                                </li>
+                            }
+
+                            <li class="nav-item dropdown">
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                                    <form method="post" asp-controller="Account" asp-action="LogOut">
+                                        <button type="submit" class="nav-link btn btn-link py-0 rounded-pill p-3 text-white font-weight-bold" style="background:#303130">
+                                            <b>LogOut</b>: @User.Identity.Name
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown">Account</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">REGISTER</a>
+                                        <a class="dropdown-item" href="#">SIGN IN</a>
+                                    </div>
+                                }
+                            </li>
+                        </ul>
+
+
+                    </div>
+
+                    <div class="cart pr-2">
+                        <a  class="catt mr-lg-5 mr-xs-5" style="font-size:35px">
+                            <i class="fas fa-cart-plus" style="color:white;"></i>
+                            <span class="badge badge-info badgestyle" id="cartResult" style="background-color: gray;"></span>
+                        </a>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3 mb-3" style="min-height:450px" ;>
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class=" footer mt-5 position-fixed border-top text-muted" style="background-color: #121212; position:initial;">
+        <div class="container text-white text-lg-center">
+            &copy; @DateTime.Now.Year - Jigi. All right reserved
+        </div>
+    </footer>
+</body>
+</html>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+
+
+
+@*<footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="col-md-12 copyright">
+                <div class="col-md-6 col-sm-6 copyright-left">
+                    <p> &copy; @DateTime.Now.Year - Jigi. All right reserved</p>
+                </div>
+
+                <div class="col-md-6 col-sm-6 copyright-right">
+                    <ul class="list-social">
+                        <li><a href="#" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>*@
+
+@*<div class="container-fluid">
+        <div class="whole fixed row">
+            <div class="nav-menus col-md-6">
+                <ul class="nav nav-pills">
+                    <li class="active rounded-lg"><a asp-controller="Home" asp-action="Index" style="border-radius:initial;">Home</a></li>
+                    <li class="rounded-lg"><a href="#">Location</a></li>
+                    <li class="rounded-lg"><a href="#">About</a></li>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <li class="rounded-lg"><a asp-controller="Admin" asp-action="Dashboard">Admin</a></li>
+                    }
+
+                    <li class="nav-item dropdown rounded-lg">
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <form method="post" asp-controller="Account" asp-action="LogOut">
+                                <button type="submit" class="nav-link btn btn-link py-0">
+                                    LogOut @User.Identity.Name
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="dropdown-toggle" data-toggle="dropdown">Account</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">REGISTER</a>
+                                <a class="dropdown-item" href="#">SIGN IN</a>
+                            </div>
+                        }
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cart col-md-6">
+                <a asp-controller="User" asp-action="CheckOut" class="catt fa-pull-right mr-lg-5 mr-xs-5" style="font-size:35px">
+                    <i style="color: #232428" class="fas fa-cart-plus"></i>
+                    <span class="badge badge-info badgestyle" id="cartResult"></span>
+                </a>
+
+            </div>
+        </div>
+    </div>*@

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Jigi.Models.Product>
+
+@{
+    ViewData["Title"] = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="col-md-12 col-xs-12">
+        <div class="col-md-12">
+            <h4 class="text-center">
+                My Order
+            </h4>
+        </div>
+
+
+        @if (Model.Count() > 0 && Model != null)
+        {
+
+            @foreach (var product in Model)
+            {
+
+
+                <table class="table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Quantity</td>
+                            <td>Price</td>
+                            <td>SubPrice</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>@product.Quantity</td>
+                            <td>@product.Price</td>
+                            <td>(@product.Quantity*@product.Price)</td>
+                            <td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-controller="Cart" asp-action="DeleteSelected" class="btn btn-dark">Remove</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right">
+                                TOTAL:
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+        }
+        else { 
+           <p>NO Order Placed</p>
+        }
+
+
+    </div>
+</div>
